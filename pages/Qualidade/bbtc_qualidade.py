@@ -53,9 +53,12 @@ def Chamada_Reclame_Aqui():
     df["DATA DA OCORRÊNCIA"] = pd.to_datetime(df["DATA DA OCORRÊNCIA"], format="%d/%m/%Y", errors='coerce')
     df['Mes_Ano'] = df['DATA DA RECLAMAÇÃO'].dt.to_period('M').astype(str)
     df['VOLTARIA A FAZER NEGÓCIO?'] = df['VOLTARIA A FAZER NEGÓCIO?'].fillna("")
-    df['AVALIAÇÃO DA SOLUÇÃO'] = df['AVALIAÇÃO DA SOLUÇÃO'].fillna("")
+    #df['AVALIAÇÃO DA SOLUÇÃO'] = df['AVALIAÇÃO DA SOLUÇÃO'].fillna("")
+    df['RESOLVIDO?'] = df['RESOLVIDO?'].fillna("")
+    
     df['VALIDACAO_NEGOCIO'] = df['VOLTARIA A FAZER NEGÓCIO?'].apply(lambda x: 1 if x == 'SIM' else 0)
-    df['VALIDACAO_RESOLVIDO'] = df['AVALIAÇÃO DA SOLUÇÃO'].apply(lambda x: 1 if x == 'RESOLVIDO' else 0)
+    #df['VALIDACAO_RESOLVIDO'] = df['AVALIAÇÃO DA SOLUÇÃO'].apply(lambda x: 1 if x == 'RESOLVIDO' else 0)
+    df['VALIDACAO_RESOLVIDO'] = df['RESOLVIDO?'].apply(lambda x: 1 if x == 'SIM' else 0)
 
     return df
 
