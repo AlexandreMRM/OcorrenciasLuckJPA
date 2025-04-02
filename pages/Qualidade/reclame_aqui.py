@@ -47,14 +47,20 @@ def BD_Reclame_Aqui():
 
     df_Reclame_Aqui['MEDIA_NOTA'] = df_Reclame_Aqui['NOTA DO CLIENTE'].mean()
     df_Reclame_Aqui['TOTAL'] = df_Reclame_Aqui['ID DA RECLAMAÇÃO'].count()
-    df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].replace("", pd.NA)
-    df_Reclame_Aqui['QTDE AVALIADAS'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].map(df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].dropna().value_counts())
+    #df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].replace("", pd.NA)
+    df_Reclame_Aqui['RESOLVIDO?'] = df_Reclame_Aqui['RESOLVIDO?'].replace("", pd.NA)
 
-    df_Reclame_Aqui['QTDE NÃO AVALIADAS'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].map(df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].value_counts(dropna=False))
+    #df_Reclame_Aqui['QTDE AVALIADAS'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].map(df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].dropna().value_counts())
+    df_Reclame_Aqui['QTDE AVALIADAS'] = df_Reclame_Aqui['RESOLVIDO?'].map(df_Reclame_Aqui['RESOLVIDO?'].dropna().value_counts())
+    
+    #df_Reclame_Aqui['QTDE NÃO AVALIADAS'] = df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].map(df_Reclame_Aqui['AVALIAÇÃO DA SOLUÇÃO'].value_counts(dropna=False))
+    df_Reclame_Aqui['QTDE NÃO AVALIADAS'] = df_Reclame_Aqui['RESOLVIDO?'].map(df_Reclame_Aqui['RESOLVIDO?'].value_counts(dropna=False))
+
 
     df_Reclame_Aqui.loc[df_Reclame_Aqui['QTDE AVALIADAS'].notna(),'QTDE NÃO AVALIADAS'] = 0
 
-    df_Reclame_Aqui_Filtrado = df_Reclame_Aqui.dropna(subset=['NOTA DO CLIENTE', 'VOLTARIA A FAZER NEGÓCIO?', 'AVALIAÇÃO DA SOLUÇÃO']).copy()
+    #df_Reclame_Aqui_Filtrado = df_Reclame_Aqui.dropna(subset=['NOTA DO CLIENTE', 'VOLTARIA A FAZER NEGÓCIO?', 'AVALIAÇÃO DA SOLUÇÃO']).copy()
+    df_Reclame_Aqui_Filtrado = df_Reclame_Aqui.dropna(subset=['NOTA DO CLIENTE', 'VOLTARIA A FAZER NEGÓCIO?', 'RESOLVIDO?']).copy()
     df_Reclame_Aqui_Filtrado['TOTAL'] = df_Reclame_Aqui_Filtrado ['ID DA RECLAMAÇÃO'].count() 
     df_Reclame_Aqui_Filtrado['MEDIA_NOTA'] = df_Reclame_Aqui_Filtrado['NOTA DO CLIENTE'].mean()
     df_Reclame_Aqui_Filtrado.loc[df_Reclame_Aqui_Filtrado['QTDE AVALIADAS'].notna(),'QTDE AVALIADAS']=1
