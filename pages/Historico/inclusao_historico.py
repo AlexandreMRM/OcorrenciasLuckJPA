@@ -51,7 +51,7 @@ def Main_Inclusao_Historico():
         lista_funcao.sort()
         lista_tipo = ['', 'Atestado', 'Comportamental', 'Elogio', 'Falta Injustificada', 'Ponto', 'Erro Operacional', 'Promoção / Contratação']
         lista_tipo.sort()
-        lista_solucao = ['', 'Apenas Histórico', 'Advertência Verbal', 'Advertência por Escrito', 'Suspensão', 'Demissão']
+        lista_solucao = ['', 'Apenas Histórico', 'Advertência Verbal', 'Advertência por Escrito', 'Suspensão', 'Demissão', 'Vale Desconto']
         lista_solucao.sort()
 
         col1, col2, col3 = st.columns(3)
