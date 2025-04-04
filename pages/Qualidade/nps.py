@@ -42,16 +42,16 @@ def BD_NPS():
     datainicio = st.date_input('Data de Inicio', value=datainicio_usuario, format='DD/MM/YYYY', key='botaonps_1')
     datafim = st.date_input('Data de Final', value=datafim_usuario, format='DD/MM/YYYY', key='botaonps_2')
 
-    if 'df_phoenix' not in st.session_state:
-        st.session_state.df_phoenix = bbtc_qualidade.BD_Escala(datainicio, datafim)
-    df_phoenix = st.session_state.df_phoenix
+    #if 'df_phoenix' not in st.session_state:
+    #    st.session_state.df_phoenix = bbtc_qualidade.BD_Escala(datainicio, datafim)
+    #df_phoenix = st.session_state.df_phoenix
 
-    df_phoenix_filtrado = df_phoenix.groupby(['Escala']).agg({
-        'Servico': 'first',
-        'Total ADT': 'sum',
-        'Guia': 'first',
-        'Data Execucao': 'first'
-    }).reset_index()
+    #df_phoenix_filtrado = df_phoenix.groupby(['Escala']).agg({
+    #   'Servico': 'first',
+    #    'Total ADT': 'sum',
+    #    'Guia': 'first',
+    #    'Data Execucao': 'first'
+    #}).reset_index()
 
     nps_filtrado = df_nps[
         (df_nps['Data'] >= datainicio) &
@@ -59,16 +59,16 @@ def BD_NPS():
     ]
     lista_passeio = nps_filtrado['Roteiro'].unique()
 
-    df_phoenix_filtrado['Data Execucao'] = pd.to_datetime(df_phoenix_filtrado['Data Execucao'])
+    #df_phoenix_filtrado['Data Execucao'] = pd.to_datetime(df_phoenix_filtrado['Data Execucao'])
     nps_filtrado = nps_filtrado.copy()
     nps_filtrado['Data'] = pd.to_datetime(nps_filtrado['Data'])
 
     # Realizar merge usando inner join pelas datas
-    df_merged = pd.merge(df_phoenix_filtrado, nps_filtrado, left_on='Data Execucao', right_on='Data', how='inner')
+    #df_merged = pd.merge(df_phoenix_filtrado, nps_filtrado, left_on='Data Execucao', right_on='Data', how='inner')
 
-    nps_filtrado_agg = df_merged.groupby(['Roteiro', 'Data']).agg(
-        {'Guia': lambda x: ', '.join(x.dropna().unique()) if not x.dropna().empty else 'Sem Guia'}
-    ).reset_index()
+    #nps_filtrado_agg = df_merged.groupby(['Roteiro', 'Data']).agg(
+    #    {'Guia': lambda x: ', '.join(x.dropna().unique()) if not x.dropna().empty else 'Sem Guia'}
+    #).reset_index()
 
     nps_filtrado_passeios = nps_filtrado.groupby(['Roteiro', 'Data']).agg({
         'NPS': 'mean',
