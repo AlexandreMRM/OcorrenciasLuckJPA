@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 def BD_Reclame_Aqui():
 
-    cor_mark = ''
+    cor_mark = 'black'
     cor_letra_mark = '#047c6c'
 
     st.markdown(f"""
