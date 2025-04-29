@@ -84,13 +84,13 @@ def BD_Reclame_Aqui():
     if kpi_avaliacao < 5:
         status_reclame_aqui = 'NÃO RECOMENDADA'
         cor_mark = '#8A2BE2'
-    if kpi_avaliacao >= 5 and kpi_avaliacao <= 5.9:
+    if kpi_avaliacao >= 5 and kpi_avaliacao <= 5.99:
         status_reclame_aqui = 'RUIM'
         cor_mark = '#FF0000'
-    if kpi_avaliacao >= 6 and kpi_avaliacao <= 6.9:
+    if kpi_avaliacao >= 6 and kpi_avaliacao <= 6.99:
         status_reclame_aqui = 'REGULAR'
         cor_mark = '#FFD700'
-    if kpi_avaliacao >= 7 and kpi_avaliacao <= 7.9:
+    if kpi_avaliacao >= 7 and kpi_avaliacao <= 7.99:
         status_reclame_aqui = 'BOM'
         cor_mark = '#000080'
     if kpi_avaliacao >= 8:
