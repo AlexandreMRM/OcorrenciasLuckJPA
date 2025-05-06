@@ -1,5 +1,6 @@
 import pages.Historico.app_historico
 import pages.Qualidade.app_qualidade
+import pages.Logistica.app_logistica
 import streamlit as st
 
 # CSS DEFINITIVO para esconder a navegação
@@ -32,5 +33,10 @@ if app == 'ocorrencias':
 if app == 'qualidade':
     from pages.Qualidade.app_qualidade import APP_Qualidade as Qualidade_LuckJPA
     Qualidade_LuckJPA()
+
+if app == 'logistica':
+    from pages.Logistica.app_logistica import app_logistica as Logistica_LuckJPA
+    Logistica_LuckJPA()
+
 
     
