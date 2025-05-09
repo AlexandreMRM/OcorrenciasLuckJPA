@@ -187,7 +187,7 @@ def Chamada_Historico_leitura():
     spreadsheet = client.open_by_key('1bLlpjuyadQLxl1R0HbisjERcAB_nTeXcifgRlmmrpLY')
 
     # Select the desired worksheet
-    planilha = spreadsheet.worksheet('BD_Teste')
+    planilha = spreadsheet.worksheet('BD_Historico')
 
     # Get all values from the sheet
     dados_planilha = planilha.get_all_values()
