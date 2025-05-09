@@ -150,7 +150,7 @@ def Main_Ocorrencias():
                         DiasTrimestre = dias_trabalhados / 90
                         MediaOcorrencias = round(numero_ocorrencias / DiasTrimestre, 2)
                 else:
-                        diaadmissao = 'Autonomo'
+                        diaadmissao = 'AUTONOMO'
 
                 if df_colaborador_selecionado.empty:
                         st.warning("Sem Histórico de Ocorrencias.")
